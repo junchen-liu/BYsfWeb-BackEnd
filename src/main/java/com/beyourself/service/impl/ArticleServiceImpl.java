@@ -11,12 +11,15 @@ import java.util.Date;
 
 @Service
 public class ArticleServiceImpl implements ArticleService {
-    @Autowired
-    private ArticleMapper articleMapper;
+    private final ArticleMapper articleMapper;
+
+    public ArticleServiceImpl(ArticleMapper articleMapper) {
+        this.articleMapper = articleMapper;
+    }
 
     @Override
     public boolean addNewArticle(Article article) {
-        //设置时间戳
+        //Set Timestamp
         Date date = new Date();
         Timestamp currTimestamp = new Timestamp(date.getTime());
         article.setEditTime(currTimestamp);

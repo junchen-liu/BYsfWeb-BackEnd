@@ -12,8 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/article")
 public class ArticleController {
 
-    @Autowired
+    final
     ArticleService articleService;
+
+    public ArticleController(ArticleService articleService) {
+        this.articleService = articleService;
+    }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResponseModel addNewArticle(Article article) {
