@@ -1,8 +1,7 @@
 package com.beyourself.controller.admin;
 
-import com.beyourself.mapper.UserMapper;
-import com.beyourself.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.beyourself.mapper.UserInfoMapper;
+import com.beyourself.model.UserInfo;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,23 +12,23 @@ import java.util.Map;
 @RestController
 @RequestMapping("/admin/login")
 public class SysLoginController {
-    private final UserMapper userMapper;
+    private final UserInfoMapper userInfoMapper;
 
-    public SysLoginController(UserMapper userMapper) {
-        this.userMapper = userMapper;
+    public SysLoginController(UserInfoMapper userInfoMapper) {
+        this.userInfoMapper = userInfoMapper;
     }
 
     @RequestMapping("/list")
-    public List<User> getUserList(){
-        return userMapper.selectList(null);
+    public List<UserInfo> getUserList(){
+        return userInfoMapper.selectList(null);
     }
 
     @RequestMapping("/map")
-    public Map<String,User> getUserMap(){
-        List<User> userList = userMapper.selectList(null);
-        Map<String,User> map = new HashMap<>();
-        for (User user : userList) {
-            map.put(user.getName(),user);
+    public Map<String, UserInfo> getUserMap(){
+        List<UserInfo> userList = userInfoMapper.selectList(null);
+        Map<String, UserInfo> map = new HashMap<>();
+        for (UserInfo user : userList) {
+            map.put(user.getNickName(),user);
         }
         return map;
     }

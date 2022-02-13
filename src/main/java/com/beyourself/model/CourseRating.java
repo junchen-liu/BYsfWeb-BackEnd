@@ -4,13 +4,12 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
-import java.sql.Timestamp;
-
 @Data
-public class CourseInfo {
+public class CourseRating {
     @TableId(type = IdType.AUTO)
     private Long id;
+    private int rating;
     private String courseId;
-    private String courseName;
-    private String Introduction;
+    private int user_Id;
+    private int like_number;
 }
