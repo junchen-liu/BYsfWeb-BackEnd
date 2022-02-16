@@ -1,13 +1,14 @@
 package com.beyourself.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.beyourself.mapper.ArticleMapper;
 import com.beyourself.model.Article;
 import com.beyourself.service.ArticleService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class ArticleServiceImpl implements ArticleService {
@@ -34,4 +35,19 @@ public class ArticleServiceImpl implements ArticleService {
     public int updateArticleState(Long[] aids, Integer state) {
         return 0;
     }
+
+    @Override
+    public List<Article> findArticleById(Long articleId) {
+        QueryWrapper<Article> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like("article_id",articleId);
+        return articleMapper.selectList(queryWrapper);
+    }
+
+    @Override
+    public List<Article> findArticleByTitle(String title) {
+        QueryWrapper<Article> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like("title",title);
+        return articleMapper.selectList(queryWrapper);
+    }
+
 }
