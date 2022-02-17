@@ -46,9 +46,19 @@ public class ArticleController {
         return articleService.findArticleByTitle(title);
     }
 
-//    @RequestMapping(value = "/findAll", method = RequestMethod.POST)
-//    public List<Article> findAllArticle() {
-//        return articleService.findAllArticle();
-//    }
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public List<Article> add(Article article) {
+        return articleService.add(article);
+    }
+
+    @RequestMapping(value = "/deleteById", method = RequestMethod.POST)
+    public List<Article> deleteById(Long articleId) {
+        return articleService.deleteById(articleId);
+    }
+
+    @RequestMapping(value = "/findAll", method = RequestMethod.POST)
+    public List<Article> findAllArticle() {
+        return articleService.findAll();
+    }
 
 }

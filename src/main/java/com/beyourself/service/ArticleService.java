@@ -13,4 +13,9 @@ public interface ArticleService {
 
     List<Article> findArticleByTitle(String articleName);
 
+    List<Article> findAll();
+
+    List<Article> deleteById(Long articleId);
+
+    List<Article> add(Article article);
 }

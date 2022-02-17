@@ -50,4 +50,21 @@ public class ArticleServiceImpl implements ArticleService {
         return articleMapper.selectList(queryWrapper);
     }
 
+    @Override
+    public List<Article> add(Article article) {
+        articleMapper.insert(article);
+        return null;
+    }
+
+    @Override
+    public List<Article> deleteById(Long articleId) {
+        articleMapper.deleteById(articleId);
+        return null;
+    }
+
+    @Override
+    public List<Article> findAll() {
+        return articleMapper.findAll();
+    }
+
 }
