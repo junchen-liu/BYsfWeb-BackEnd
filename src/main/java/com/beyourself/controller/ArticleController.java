@@ -3,10 +3,11 @@ package com.beyourself.controller;
 import com.beyourself.model.Article;
 import com.beyourself.model.ResponseModel;
 import com.beyourself.service.ArticleService;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/article")
 public class ArticleController {
@@ -33,6 +34,31 @@ public class ArticleController {
             return new ResponseModel("success", "删除成功!");
         }
         return new ResponseModel("error", "删除失败!");
+    }
+
+    @RequestMapping(value = "/getDetailById", method = RequestMethod.POST)
+    public List<Article> findArticleById(Long articleId) {
+        return articleService.findArticleById(articleId);
+    }
+
+    @RequestMapping(value = "/getDetailByTitle", method = RequestMethod.POST)
+    public List<Article> findArticleByName(String title) {
+        return articleService.findArticleByTitle(title);
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public List<Article> add(Article article) {
+        return articleService.add(article);
+    }
+
+    @RequestMapping(value = "/deleteById", method = RequestMethod.POST)
+    public List<Article> deleteById(Long articleId) {
+        return articleService.deleteById(articleId);
+    }
+
+    @RequestMapping(value = "/findAll", method = RequestMethod.POST)
+    public List<Article> findAllArticle() {
+        return articleService.findAll();
     }
 
 }
