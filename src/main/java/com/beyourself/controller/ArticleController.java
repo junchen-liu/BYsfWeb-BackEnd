@@ -5,6 +5,7 @@ import com.beyourself.model.QiniuUploadInfoVO;
 import com.beyourself.model.ResponseModel;
 import com.beyourself.provider.QiniuFileProvider;
 import com.beyourself.service.ArticleService;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/article")
 public class ArticleController {
@@ -58,6 +62,31 @@ public class ArticleController {
                 .imageUrl(imageUrl)
                 .build();
         return info;
+    }
+
+    @RequestMapping(value = "/getDetailById", method = RequestMethod.POST)
+    public List<Article> findArticleById(Long articleId) {
+        return articleService.findArticleById(articleId);
+    }
+
+    @RequestMapping(value = "/getDetailByTitle", method = RequestMethod.POST)
+    public List<Article> findArticleByName(String title) {
+        return articleService.findArticleByTitle(title);
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public List<Article> add(Article article) {
+        return articleService.add(article);
+    }
+
+    @RequestMapping(value = "/deleteById", method = RequestMethod.POST)
+    public List<Article> deleteById(Long articleId) {
+        return articleService.deleteById(articleId);
+    }
+
+    @RequestMapping(value = "/findAll", method = RequestMethod.POST)
+    public List<Article> findAllArticle() {
+        return articleService.findAll();
     }
 
 }
