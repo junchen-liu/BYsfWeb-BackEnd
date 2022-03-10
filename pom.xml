@@ -73,6 +73,12 @@
             <artifactId>hutool-all</artifactId>
             <version>5.7.20</version>
         </dependency>
+        <!--QINIU Cloud Obj Storage-->
+        <dependency>
+            <groupId>com.qiniu</groupId>
+            <artifactId>qiniu-java-sdk</artifactId>
+            <version>[7.7.0, 7.7.99]</version>
+        </dependency>
 
     </dependencies>
 

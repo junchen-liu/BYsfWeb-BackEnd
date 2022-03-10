@@ -20,7 +20,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Map<String, Object> userLogin(@RequestBody User user) {
+    public @ResponseBody Map<String, Object> userLogin(@RequestBody User user) {
         return userService.loginAccount(user);
     }
 
@@ -33,4 +33,5 @@ public class UserController {
     public Map<String, Object> activeAccount(String confirmCode) {
         return userService.activeAccount(confirmCode);
     }
+
 }

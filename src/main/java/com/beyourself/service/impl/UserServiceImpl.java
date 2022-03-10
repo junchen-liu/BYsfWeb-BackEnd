@@ -69,7 +69,7 @@ public class UserServiceImpl implements UserService {
             resultMap.put("message","该账户不存在或未激活");
         } else if (userList.size() == 1){//one user found
             User u = userList.get(0);
-            String md5Pwd = SecureUtil.md5(u.getPassword() + user.getSalt());
+            String md5Pwd = SecureUtil.md5(user.getPassword() + u.getSalt());
             if(u.getPassword().equals(md5Pwd)){
                 resultMap.put("code",200);
                 resultMap.put("message","登录成功");
