@@ -6,13 +6,11 @@ import com.beyourself.model.ResponseModel;
 import com.beyourself.service.ArticleService;
 import com.beyourself.service.CourseService;
 import com.beyourself.service.impl.CourseServiceImpl;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/course")
 public class CourseController {
@@ -28,4 +26,14 @@ public class CourseController {
         return courseInfos;
     }
 
+    @RequestMapping(value = "/getCoursesById", method = RequestMethod.GET)
+    public @ResponseBody List<CourseInfo> getCoursesById(String id) {
+        List<CourseInfo> courseInfos = courseService.getCourseListById(id);
+        return courseInfos;
+    }
+
+    @RequestMapping(value = "/findAll", method = RequestMethod.POST)
+    public List<CourseInfo> findAllCourseInfo() {
+        return courseService.findAll();
+    }
 }
