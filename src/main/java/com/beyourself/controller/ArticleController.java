@@ -27,8 +27,8 @@ public class ArticleController {
         this.articleService = articleService;
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
-    public ResponseModel addNewArticle(Article article) {
+    @RequestMapping(value = "/addnew", method = RequestMethod.POST)
+    public ResponseModel addNewArticle(@RequestBody Article article) {
         if (articleService.addNewArticle(article)) {
             return new ResponseModel("success", article.getArticleId()+ "");
         } else {
@@ -56,12 +56,12 @@ public class ArticleController {
     public QiniuUploadInfoVO getToken() {
 
         String token = qiniuFileProvider.getUploadToken();
-        QiniuUploadInfoVO info = QiniuUploadInfoVO.builder()
+        QiniuUploadInfoVO info2 = QiniuUploadInfoVO.builder()
                 .token(token)
                 .uploadUrl(uploadUrl)
                 .imageUrl(imageUrl)
                 .build();
-        return info;
+        return info2;
     }
 
     @RequestMapping(value = "/getDetailById", method = RequestMethod.POST)
